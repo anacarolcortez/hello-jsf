@@ -7,7 +7,7 @@
 	<persistence-unit name="HelloJSF">
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cursojsf?useSSL=false"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cursojsf?useSSL=false&amp;allowPublicKeyRetrieval=true"/>
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="123@456" />
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
@@ -16,9 +16,7 @@
 			
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-			<property name="hibernate.ddl-auto" value="none"/>
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
+
 			
 		</properties>
 	</persistence-unit>
