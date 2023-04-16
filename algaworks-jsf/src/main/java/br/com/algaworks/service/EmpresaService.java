@@ -1,4 +1,4 @@
-package service;
+package br.com.algaworks.service;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import br.com.algaworks.models.Empresa;
 import br.com.algaworks.repository.Empresas;
-import util.Transacional;
+import br.com.algaworks.util.Transacional;
 
 public class EmpresaService implements Serializable {
 

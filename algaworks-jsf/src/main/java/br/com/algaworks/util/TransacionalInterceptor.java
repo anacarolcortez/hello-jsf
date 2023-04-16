@@ -1,4 +1,4 @@
-package util;
+package br.com.algaworks.util;
 
 import java.io.Serializable;
 
