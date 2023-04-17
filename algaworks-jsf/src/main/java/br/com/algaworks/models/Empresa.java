@@ -1,6 +1,7 @@
 package br.com.algaworks.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -42,6 +43,9 @@ public class Empresa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo")
 	private TipoEmpresa tipoEmpresa;
+	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal faturamento;
 	
 	@ManyToOne()
 	@JoinColumn(name = "ramo_atividade_id")
@@ -101,6 +105,18 @@ public class Empresa implements Serializable {
 
 	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
 		this.tipoEmpresa = tipoEmpresa;
+	}
+
+	public BigDecimal getFaturamento() {
+		return faturamento;
+	}
+
+	public void setFaturamento(BigDecimal faturamento) {
+		this.faturamento = faturamento;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
