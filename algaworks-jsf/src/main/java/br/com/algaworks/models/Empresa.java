@@ -27,13 +27,13 @@ public class Empresa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome_fantasia", nullable = false, length = 80)
+	@Column(name = "nome_fantasia", nullable = false, length = 120)
 	private String nomeFantasia;
 	
-	@Column(name = "razao_social", nullable = false, length = 80)
+	@Column(name = "razao_social", nullable = false, length = 120)
 	private String razaoSocial;
 	
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 18)
 	private String cnpj;
 	
 	@Temporal(value = TemporalType.DATE)
