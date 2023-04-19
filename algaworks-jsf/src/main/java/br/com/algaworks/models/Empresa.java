@@ -1,7 +1,6 @@
 package br.com.algaworks.models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,16 +17,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="empresa")
+@Table(name = "empresa")
 public class Empresa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome_fantasia", nullable = false, length = 120)
+	@Column(name = "nome_fantasia", nullable = false, length = 80)
 	private String nomeFantasia;
 	
 	@Column(name = "razao_social", nullable = false, length = 120)
@@ -36,21 +35,18 @@ public class Empresa implements Serializable {
 	@Column(nullable = false, length = 18)
 	private String cnpj;
 	
-	@Temporal(value = TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "data_fundacao")
 	private Date dataFundacao;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo")
-	private TipoEmpresa tipoEmpresa;
-	
-	@Column(precision = 10, scale = 2)
-	private BigDecimal faturamento;
-	
-	@ManyToOne()
-	@JoinColumn(name = "ramo_atividade_id")
+	@ManyToOne
+	@JoinColumn(name = "ramo_atividade_id", nullable = false)
 	private RamoAtividade ramoAtividade;
-
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 30)
+	private TipoEmpresa tipo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -98,25 +94,13 @@ public class Empresa implements Serializable {
 	public void setRamoAtividade(RamoAtividade ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
-	
-	public TipoEmpresa getTipoEmpresa() {
-		return tipoEmpresa;
+
+	public TipoEmpresa getTipo() {
+		return tipo;
 	}
 
-	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
-		this.tipoEmpresa = tipoEmpresa;
-	}
-
-	public BigDecimal getFaturamento() {
-		return faturamento;
-	}
-
-	public void setFaturamento(BigDecimal faturamento) {
-		this.faturamento = faturamento;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setTipo(TipoEmpresa tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
@@ -146,9 +130,6 @@ public class Empresa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Empresa [id=" + id + ", nomeFantasia=" + nomeFantasia + ", razaoSocial=" + razaoSocial + ", cnpj="
-				+ cnpj + ", dataFundacao=" + dataFundacao + ", ramoAtividade=" + ramoAtividade.getDescricao() + "]";
-	}
-	
-
+		return "Empresa [id=" + id + "]";
+	}	
 }
