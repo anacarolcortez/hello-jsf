@@ -30,6 +30,13 @@
 		<ui:insert name="conteudo"/>
 	</div>
 	
+	<h:form>	
+		<p:confirmDialog id="dialog" global="true">
+			<p:commandButton value="Não" icon="fa fa-remove" styleClass="ui-confirmdialog-no"/>
+			<p:commandButton value="Sim" icon="fa fa-check" styleClass="ui-confirmdialog-yes"/>
+		</p:confirmDialog>
+	</h:form>
+	
 	<footer>
 		Curso online "JSF e PrimeFaces Essencial"
 	</footer>
