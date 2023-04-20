@@ -2,6 +2,7 @@ package br.com.algaworks.util;
 
 import java.io.Serializable;
 
+import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -11,6 +12,7 @@ import javax.persistence.EntityTransaction;
 
 @Interceptor
 @Transacional
+@Priority(value = 1)
 public class TransacionalInterceptor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,19 +28,15 @@ public class TransacionalInterceptor implements Serializable {
         try {
             if (!trx.isActive()) {
                 trx.begin();
-                trx.rollback(); //o rollback devolve ao estado anterior e inativa a transação, evitando que o uso direto da EntityManager por outra classe (o que deve ser feito somente através da injeção de dependência), altere o banco de dados indevidamente
-
-                trx.begin();
 
                 criador = true;
             }
-
             return context.proceed();
+            
         } catch (Exception e) {
             if (trx != null && criador) {
                 trx.rollback();
             }
-
             throw e;
         } finally {
             if (trx != null && trx.isActive() && criador) {
